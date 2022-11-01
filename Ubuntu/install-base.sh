@@ -185,3 +185,5 @@ install-all() {
 }
 
 install-all
+
+echo -e "${BLUE}${BOLD}=> ${WHITE}Install Complete! Restart your computer to continue!${CLEAR}"
