@@ -16,9 +16,10 @@ echo -e "${BLUE}${BOLD}=> ${WHITE}Install Desktop Tool${CLEAR}"
 
 install-basic-tools() {
     echo -e "\n${YELLOW}${BOLD}SOFTWARE ${BLUE}=> ${WHITE}Microsoft Edge${CLEAR}"
+    echo -e "${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Download deb file${CLEAR}"
     curl -SL https://go.microsoft.com/fwlink\?linkid\=2149051 --output edge.deb
+    echo -e "\n${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Install${CLEAR}"
     sudo apt -y install ./edge.deb
-    rm edge.deb
 }
 
 install-dev-tools() {
