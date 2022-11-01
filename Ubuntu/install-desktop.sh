@@ -41,7 +41,7 @@ install-dev-tools() {
     echo -e "\n${YELLOW}${BOLD}SOFTWARE ${BLUE}=> ${WHITE}MySQL Workbench${CLEAR}"
     echo -e "${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Add repository${CLEAR}"
     sudo mkdir -p /etc/apt/keyrings
-    sudo gpg --homedir /tmp --no-default-keyring --keyring /etc/apt/keyrings/mysql.gpg
+    sudo gpg --homedir /tmp --no-default-keyring --keyring /etc/apt/keyrings/mysql.gpg  --keyserver pgp.mit.edu --recv-keys 3A79BD29
     echo "deb [signed-by=/etc/apt/keyrings/mysql.gpg] http://repo.mysql.com/apt/ubuntu/ $(lsb_release -cs) mysql-8.0" | sudo tee -a /etc/apt/sources.list.d/mysql.list  > /dev/null
     echo "deb [signed-by=/etc/apt/keyrings/mysql.gpg] http://repo.mysql.com/apt/ubuntu/ $(lsb_release -cs) mysql-tools" | sudo tee -a /etc/apt/sources.list.d/mysql.list  > /dev/null
 
