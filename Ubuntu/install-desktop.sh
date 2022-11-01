@@ -78,6 +78,24 @@ install-personalize() {
     fc-cache -fv
 }
 
+clean-up() {
+    echo -e "\n${YELLOW}${BOLD}STEP ${BLUE}=> ${WHITE}Clean up deb files${CLEAR}"
+    rm /tmp/*.deb
+    rm ./*.deb
+
+    echo -e "\n${YELLOW}${BOLD}STEP ${BLUE}=> ${WHITE}Clean up font files${CLEAR}"
+    rm -r /tmp/fonts
+    rm ./*.zip
+
+    echo -e "\n${YELLOW}${BOLD}STEP ${BLUE}=> ${WHITE}Clean up apt packages${CLEAR}"
+    sudo apt -y --purge autoremove
+    sudo apt clean
+    sudo apt autoclean
+
+    echo -e "\n${YELLOW}${BOLD}STEP ${BLUE}=> ${WHITE}Clean up snap caches${CLEAR}"
+    sudo sh -c 'rm -rf /var/lib/snapd/cache/*'
+}
+
 install-all() {
     echo -e "\n${GREEN}${BOLD}SETUP ${BLUE}=> ${CYAN}Install basic tools${CLEAR}"
     install-basic-tools
@@ -88,6 +106,8 @@ install-all() {
     echo -e "\n${GREEN}${BOLD}SETUP ${BLUE}=> ${CYAN}Install personalizations${CLEAR}"
     install-personalize
     
+    echo -e "\n${GREEN}${BOLD}POST SETUP ${BLUE}=> ${CYAN}Clean-Up${CLEAR}"
+    clean-up
 }
 
 install-all
