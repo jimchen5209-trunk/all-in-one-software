@@ -25,8 +25,8 @@ do-system-upgrade() {
 }
 
 install-basic-tools() {
-    echo -e "\n${YELLOW}${BOLD}SOFTWARE ${BLUE}=> ${WHITE}Git${CLEAR}"
-    sudo apt -y install git
+    echo -e "\n${YELLOW}${BOLD}SOFTWARE ${BLUE}=> ${WHITE}Git & GPG${CLEAR}"
+    sudo apt -y install git gpg
 
     echo -e "\n${YELLOW}${BOLD}SOFTWARE ${BLUE}=> ${WHITE}Curl & Wget${CLEAR}"
     sudo apt -y install curl wget
