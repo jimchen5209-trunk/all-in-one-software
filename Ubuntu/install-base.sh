@@ -57,7 +57,7 @@ setup-basic-config() {
         gpg --import jimchen5209.private.gpg
 
         echo -e "\n${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Change trust level${CLEAR}"
-        gpg --edit-key jimchen5209@gmail.com
+        keyid=$(gpg --quiet --import-options import-show --import jimchen5209.private.gpg | sed -e '2!d' -e 's/^[ \t]*//') &&  echo "${keyid}:6:" | gpg --import-ownertrust
 
         echo -e "\n${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Test gpg signing${CLEAR}"
         echo "test" | gpg --clearsign
