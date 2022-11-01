@@ -39,17 +39,11 @@ install-dev-tools() {
     sudo apt -y install /tmp/insomnia.deb
 
     echo -e "\n${YELLOW}${BOLD}SOFTWARE ${BLUE}=> ${WHITE}MySQL Workbench${CLEAR}"
-    echo -e "${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Add repository${CLEAR}"
-    sudo mkdir -p /etc/apt/keyrings
-    sudo gpg --homedir /tmp --no-default-keyring --keyring /etc/apt/keyrings/mysql.gpg  --keyserver pgp.mit.edu --recv-keys 3A79BD29
-    echo "deb [signed-by=/etc/apt/keyrings/mysql.gpg] http://repo.mysql.com/apt/ubuntu/ $(lsb_release -cs) mysql-8.0" | sudo tee -a /etc/apt/sources.list.d/mysql.list  > /dev/null
-    echo "deb [signed-by=/etc/apt/keyrings/mysql.gpg] http://repo.mysql.com/apt/ubuntu/ $(lsb_release -cs) mysql-tools" | sudo tee -a /etc/apt/sources.list.d/mysql.list  > /dev/null
-
-    echo -e "\n${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Update apt source list${CLEAR}"
-    sudo apt update
-
-    echo -e "\n${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Install${CLEAR}"
-    sudo apt -y install mysql-workbench-community
+    echo -e "${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Download deb file${CLEAR}"
+    curl -SL https://dev.mysql.com/downloads/file/\?id=514052 --output mysql-workbench.deb
+    echo -e "${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Install${CLEAR}"
+    cp mysql-workbench.deb /tmp
+    sudo apt -y install /tmp/mysql-workbench.deb
 
     echo -e "\n${YELLOW}${BOLD}SOFTWARE ${BLUE}=> ${WHITE}MQTTX${CLEAR}"
     sudo snap install mqttx
