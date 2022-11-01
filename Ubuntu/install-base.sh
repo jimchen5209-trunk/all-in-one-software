@@ -126,6 +126,28 @@ setup-zsh() {
     sed -i 's/plugins=(git/plugins=(git zsh-syntax-highlighting/' ~/.zshrc
 }
 
+install-node() {
+    echo -e "\n${YELLOW}${BOLD}STEP ${BLUE}=> ${WHITE}Install nvm${CLEAR}"
+    export NVM_DIR="$HOME/.nvm" && (
+        git clone https://github.com/nvm-sh/nvm.git "$NVM_DIR"
+        cd "$NVM_DIR"
+        git checkout `git describe --abbrev=0 --tags --match "v[0-9]*" $(git rev-list --tags --max-count=1)`
+    ) && \. "$NVM_DIR/nvm.sh"
+
+    echo -e "\n${YELLOW}${BOLD}STEP ${BLUE}=> ${WHITE}Install latest lts version${CLEAR}"
+    nvm install --lts
+
+    echo -e "\n${YELLOW}${BOLD}STEP ${BLUE}=> ${WHITE}Enable corepack for yarn and pnpm${CLEAR}"
+    corepack enable
+
+    echo -e "\n${YELLOW}${BOLD}STEP ${BLUE}=> ${WHITE}Install zsh-nvm plugin for oh-my-zsh${CLEAR}"
+    git clone https://github.com/lukechilds/zsh-nvm ~/.oh-my-zsh/custom/plugins/zsh-nvm
+    sed -i 's/plugins=(git/plugins=(git zsh-nvm/' ~/.zshrc
+
+    echo -e "\n${YELLOW}${BOLD}STEP ${BLUE}=> ${WHITE}Install default node npm nvm yarn plugin for oh-my-zsh${CLEAR}"
+    sed -i 's/plugins=(git/plugins=(git node npm nvm yarn/' ~/.zshrc
+}
+
 install-all() {
     echo -e "\n${GREEN}${BOLD}SETUP ${BLUE}=> ${CYAN}Update the system${CLEAR}"
     do-system-upgrade
@@ -139,6 +161,8 @@ install-all() {
     echo -e "\n${GREEN}${BOLD}SETUP ${BLUE}=> ${CYAN}Setup Z-Shell${CLEAR}"
     setup-zsh
 
+    echo -e "\n${GREEN}${BOLD}SETUP ${BLUE}=> ${CYAN}SInstall Node.js${CLEAR}"
+    install-node
 }
 
 install-all
