@@ -55,6 +55,29 @@ install-dev-tools() {
     sudo snap install mqttx
 }
 
+install-personalize() {
+    echo -e "\n${YELLOW}${BOLD}FONT ${BLUE}=> ${WHITE}Jetbrains Mono Nerd Font${CLEAR}"
+    echo -e "${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Download font file${CLEAR}"
+    wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/JetBrainsMono.zip
+    echo -e "\n${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Extract font${CLEAR}"
+    mkdir -p ~/.fonts
+    unzip -q JetBrainsMono.zip -d ~/.fonts
+    rm ~/.fonts/*Windows*
+    echo -e "\n${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Update font cache${CLEAR}"
+    fc-cache -fv
+
+    echo -e "\n${YELLOW}${BOLD}FONT ${BLUE}=> ${WHITE}Jetbrains Mono ${CLEAR}"
+    echo -e "${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Download font file${CLEAR}"
+    wget https://download.jetbrains.com/fonts/JetBrainsMono-2.242.zip
+    echo -e "\n${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Extract font${CLEAR}"
+    unzip -q JetBrainsMono-2.242.zip -d /tmp
+    cp /tmp/fonts/variable/*.ttf ~/.fonts
+    mv ~/.fonts/JetBrainsMono\[wght\].ttf ~/.fonts/JetBrainsMono.ttf
+    mv ~/.fonts/JetBrainsMono-Italic\[wght\].ttf ~/.fonts/JetBrainsMono-Italic.ttf
+    echo -e "\n${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Update font cache${CLEAR}"
+    fc-cache -fv
+}
+
 install-all() {
     echo -e "\n${GREEN}${BOLD}SETUP ${BLUE}=> ${CYAN}Install basic tools${CLEAR}"
     install-basic-tools
@@ -62,6 +85,9 @@ install-all() {
     echo -e "\n${GREEN}${BOLD}SETUP ${BLUE}=> ${CYAN}Install dev tools${CLEAR}"
     install-dev-tools
 
+    echo -e "\n${GREEN}${BOLD}SETUP ${BLUE}=> ${CYAN}Install personalizations${CLEAR}"
+    install-personalize
+    
 }
 
 install-all
