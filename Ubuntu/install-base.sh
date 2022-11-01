@@ -167,6 +167,14 @@ install-docker() {
     sudo gpasswd -a $(whoami) docker
 }
 
+install-python() {
+    echo -e "\n${YELLOW}${BOLD}STEP ${BLUE}=> ${WHITE}Install pip for python3${CLEAR}"
+    sudo apt -y install python3-pip
+
+    echo -e "\n${YELLOW}${BOLD}STEP ${BLUE}=> ${WHITE}Install venv for python3${CLEAR}"
+    sudo apt -y install python3-venv
+}
+
 install-all() {
     echo -e "\n${GREEN}${BOLD}SETUP ${BLUE}=> ${CYAN}Update the system${CLEAR}"
     do-system-upgrade
@@ -185,6 +193,9 @@ install-all() {
 
     echo -e "\n${GREEN}${BOLD}SETUP ${BLUE}=> ${CYAN}Install Docker${CLEAR}"
     install-docker
+
+    echo -e "\n${GREEN}${BOLD}SETUP ${BLUE}=> ${CYAN}Install Python${CLEAR}"
+    install-python
 }
 
 install-all
