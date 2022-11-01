@@ -19,7 +19,8 @@ install-basic-tools() {
     echo -e "${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Download deb file${CLEAR}"
     curl -SL https://go.microsoft.com/fwlink\?linkid\=2149051 --output edge.deb
     echo -e "\n${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Install${CLEAR}"
-    sudo apt -y install ./edge.deb
+    cp edge.deb /tmp
+    sudo apt -y install /tmp/edge.deb
 }
 
 install-dev-tools() {
@@ -27,13 +28,15 @@ install-dev-tools() {
     echo -e "${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Download deb file${CLEAR}"
     curl -SL https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64 --output code.deb
     echo -e "${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Install${CLEAR}"
-    sudo apt -y install code.deb
+    cp code.deb /tmp
+    sudo apt -y install /tmp/code.deb
 
     echo -e "\n${YELLOW}${BOLD}SOFTWARE ${BLUE}=> ${WHITE}Insomnia${CLEAR}"
     echo -e "${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Download deb file${CLEAR}"
     curl -SL https://updates.insomnia.rest/downloads/ubuntu/latest?&app=com.insomnia.app&source=website --output insomnia.deb
     echo -e "${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Install${CLEAR}"
-    sudo apt -y install insomnia.deb
+    cp insomnia.deb /tmp
+    sudo apt -y install /tmp/insomnia.deb
 
     echo -e "\n${YELLOW}${BOLD}SOFTWARE ${BLUE}=> ${WHITE}MySQL Workbench${CLEAR}"
     echo -e "${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Add repository${CLEAR}"
