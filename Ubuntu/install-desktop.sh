@@ -26,14 +26,14 @@ install-basic-tools() {
 install-dev-tools() {
     echo -e "\n${YELLOW}${BOLD}SOFTWARE ${BLUE}=> ${WHITE}Visual Studio Code${CLEAR}"
     echo -e "${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Download deb file${CLEAR}"
-    curl -SL https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64 --output code.deb
+    curl -SL https://code.visualstudio.com/sha/download\?build\=stable\&os\=linux-deb-x64 --output code.deb
     echo -e "${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Install${CLEAR}"
     cp code.deb /tmp
     sudo apt -y install /tmp/code.deb
 
     echo -e "\n${YELLOW}${BOLD}SOFTWARE ${BLUE}=> ${WHITE}Insomnia${CLEAR}"
     echo -e "${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Download deb file${CLEAR}"
-    curl -SL https://updates.insomnia.rest/downloads/ubuntu/latest?&app=com.insomnia.app&source=website --output insomnia.deb
+    curl -SL https://updates.insomnia.rest/downloads/ubuntu/latest\?\&app=com.insomnia.app\&source=website --output insomnia.deb
     echo -e "${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Install${CLEAR}"
     cp insomnia.deb /tmp
     sudo apt -y install /tmp/insomnia.deb
