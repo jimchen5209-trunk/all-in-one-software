@@ -161,7 +161,7 @@ install-all() {
     echo -e "\n${GREEN}${BOLD}SETUP ${BLUE}=> ${CYAN}Setup Z-Shell${CLEAR}"
     setup-zsh
 
-    echo -e "\n${GREEN}${BOLD}SETUP ${BLUE}=> ${CYAN}SInstall Node.js${CLEAR}"
+    echo -e "\n${GREEN}${BOLD}SETUP ${BLUE}=> ${CYAN}Install Node.js${CLEAR}"
     install-node
 }
 
