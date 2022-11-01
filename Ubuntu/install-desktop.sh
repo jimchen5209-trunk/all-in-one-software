@@ -58,6 +58,10 @@ install-dev-tools() {
 install-all() {
     echo -e "\n${GREEN}${BOLD}SETUP ${BLUE}=> ${CYAN}Install basic tools${CLEAR}"
     install-basic-tools
+    
+    echo -e "\n${GREEN}${BOLD}SETUP ${BLUE}=> ${CYAN}Install dev tools${CLEAR}"
+    install-dev-tools
+
 }
 
 install-all
