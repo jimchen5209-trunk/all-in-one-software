@@ -24,6 +24,9 @@ install-basic-tools() {
 }
 
 install-dev-tools() {
+    echo -e "\n${YELLOW}${BOLD}SOFTWARE ${BLUE}=> ${WHITE}Gnome Keyring${CLEAR}"
+    sudo apt -y install gnome-keyring
+
     echo -e "\n${YELLOW}${BOLD}SOFTWARE ${BLUE}=> ${WHITE}Visual Studio Code${CLEAR}"
     echo -e "${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Download deb file${CLEAR}"
     curl -SL https://code.visualstudio.com/sha/download\?build\=stable\&os\=linux-deb-x64 --output code.deb
