@@ -43,7 +43,7 @@ install-dev-tools() {
 
     echo -e "\n${YELLOW}${BOLD}SOFTWARE ${BLUE}=> ${WHITE}MySQL Workbench${CLEAR}"
     echo -e "${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Download deb file${CLEAR}"
-    curl -SL https://dev.mysql.com/downloads/file/\?id=514052 --output mysql-workbench.deb
+    curl -SL https://dev.mysql.com/get/Downloads/MySQLGUITools/mysql-workbench-community_8.0.31-1ubuntu22.04_amd64.deb --output mysql-workbench.deb
     echo -e "${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Install${CLEAR}"
     cp mysql-workbench.deb /tmp
     sudo apt -y install /tmp/mysql-workbench.deb
