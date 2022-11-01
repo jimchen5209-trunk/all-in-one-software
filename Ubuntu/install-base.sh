@@ -35,7 +35,7 @@ install-basic-tools() {
     sudo apt -y install vim
 
     echo -e "\n${YELLOW}${BOLD}SOFTWARE ${BLUE}=> ${WHITE}Htop${CLEAR}"
-    sudo apt -y install Htop
+    sudo apt -y install htop
 
     echo -e "\n${YELLOW}${BOLD}SOFTWARE ${BLUE}=> ${WHITE}Z-Shell${CLEAR}"
     sudo apt -y install zsh
