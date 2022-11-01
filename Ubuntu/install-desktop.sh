@@ -78,6 +78,14 @@ install-personalize() {
     fc-cache -fv
 }
 
+install-portainer() {
+    echo -e "\n${YELLOW}${BOLD}STEP ${BLUE}=> ${WHITE}Create volume${CLEAR}"
+    sudo docker volume create portainer_data
+
+    echo -e "\n${YELLOW}${BOLD}STEP ${BLUE}=> ${WHITE}Startup${CLEAR}"
+    sudo docker run -d -p 9443:9443 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
+}
+
 clean-up() {
     echo -e "\n${YELLOW}${BOLD}STEP ${BLUE}=> ${WHITE}Clean up deb files${CLEAR}"
     rm /tmp/*.deb
@@ -106,6 +114,9 @@ install-all() {
     echo -e "\n${GREEN}${BOLD}SETUP ${BLUE}=> ${CYAN}Install personalizations${CLEAR}"
     install-personalize
     
+    echo -e "\n${GREEN}${BOLD}SETUP ${BLUE}=> ${CYAN}Install portainer (docker manage tool)${CLEAR}"
+    install-portainer
+
     echo -e "\n${GREEN}${BOLD}POST SETUP ${BLUE}=> ${CYAN}Clean-Up${CLEAR}"
     clean-up
 }
