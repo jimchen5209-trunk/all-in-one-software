@@ -148,6 +148,22 @@ install-node() {
     sed -i 's/plugins=(git/plugins=(git node npm nvm yarn/' ~/.zshrc
 }
 
+install-docker() {
+    echo -e "\n${YELLOW}${BOLD}STEP ${BLUE}=> ${WHITE}Install dependcies${CLEAR}"
+    sudo apt -y install ca-certificates curl gnupg lsb-release
+
+    echo -e "\n${YELLOW}${BOLD}STEP ${BLUE}=> ${WHITE}Add repository${CLEAR}"
+    sudo mkdir -p /etc/apt/keyrings
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+    echo -e "\n${YELLOW}${BOLD}STEP ${BLUE}=> ${WHITE}Install docker${CLEAR}"
+    sudo apt -y install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+
+    echo -e "\n${YELLOW}${BOLD}STEP ${BLUE}=> ${WHITE}Enable docker permission${CLEAR}"
+    sudo gpasswd -a $(whoami) docker
+}
+
 install-all() {
     echo -e "\n${GREEN}${BOLD}SETUP ${BLUE}=> ${CYAN}Update the system${CLEAR}"
     do-system-upgrade
@@ -163,6 +179,9 @@ install-all() {
 
     echo -e "\n${GREEN}${BOLD}SETUP ${BLUE}=> ${CYAN}Install Node.js${CLEAR}"
     install-node
+
+    echo -e "\n${GREEN}${BOLD}SETUP ${BLUE}=> ${CYAN}Install Docker${CLEAR}"
+    install-docker
 }
 
 install-all
