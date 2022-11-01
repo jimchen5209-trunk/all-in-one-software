@@ -175,6 +175,13 @@ install-python() {
     sudo apt -y install python3-venv
 }
 
+clean-up() {
+    echo -e "\n${YELLOW}${BOLD}STEP ${BLUE}=> ${WHITE}Clean up apt packages${CLEAR}"
+    sudo apt -y --purge autoremove
+    sudo apt clean
+    sudo apt autoclean
+}
+
 install-all() {
     echo -e "\n${GREEN}${BOLD}SETUP ${BLUE}=> ${CYAN}Update the system${CLEAR}"
     do-system-upgrade
@@ -196,6 +203,9 @@ install-all() {
 
     echo -e "\n${GREEN}${BOLD}SETUP ${BLUE}=> ${CYAN}Install Python${CLEAR}"
     install-python
+
+    echo -e "\n${GREEN}${BOLD}POST SETUP ${BLUE}=> ${CYAN}Clean-Up${CLEAR}"
+    clean-up
 }
 
 install-all
