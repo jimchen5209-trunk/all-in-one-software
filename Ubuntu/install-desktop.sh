@@ -44,6 +44,9 @@ install-basic-tools() {
 
     echo -e "\n${YELLOW}${BOLD}SOFTWARE ${BLUE}=> ${WHITE}GIMP${CLEAR}"
     sudo apt -y install gimp
+
+    echo -e "\n${YELLOW}${BOLD}SOFTWARE ${BLUE}=> ${WHITE}Spotify${CLEAR}"
+    sudo snap install spotify
 }
 
 install-dev-tools() {
