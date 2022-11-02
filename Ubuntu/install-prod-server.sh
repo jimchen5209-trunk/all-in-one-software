@@ -39,6 +39,10 @@ install-portainer() {
 }
 
 install-pm2() {
+    echo -e "\n${YELLOW}${BOLD}STEP ${BLUE}=> ${WHITE}Load NVM${CLEAR}"
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
     echo -e "\n${YELLOW}${BOLD}STEP ${BLUE}=> ${WHITE}Install pm2${CLEAR}"
     npm i -g pm2@latest
 
