@@ -209,8 +209,9 @@ install-all() {
 }
 
 install-all
+
+echo -e "\n${BLUE}${BOLD}=> ${WHITE}Basic Tool Install Complete!${CLEAR}\n"
+
 if [ "$1" != "--called-from-another" ]; then
     echo -e "\n${BLUE}${BOLD}=> ${WHITE}Install Complete! Restart your computer to continue!${CLEAR}"
-else 
-    echo -e "\n${BLUE}${BOLD}=> ${WHITE}Basic Tool Install Complete!${CLEAR}\n"
 fi
