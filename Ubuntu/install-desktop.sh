@@ -98,6 +98,13 @@ install-personalize() {
 install-communtiy() {
     echo -e "\n${YELLOW}${BOLD}SOFTWARE ${BLUE}=> ${WHITE}Telegram Desktop${CLEAR}"
     sudo snap install telegram-desktop
+
+    echo -e "\n${YELLOW}${BOLD}SOFTWARE ${BLUE}=> ${WHITE}Discord Canary${CLEAR}"
+    echo -e "${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Download deb file${CLEAR}"
+    curl -SL https://discord.com/api/download/canary\?platform\=linux\&format=deb --output discore-canary.deb
+    echo -e "${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Install${CLEAR}"
+    cp discore-canary.deb /tmp
+    sudo apt -y install /tmp/discore-canary.deb
 }
 
 install-portainer() {
