@@ -45,6 +45,25 @@ install-pm2() {
     sudo env PATH=$PATH:$NVM_BIN $NVM_BIN/pm2 startup systemd -u $(whoami) --hp $HOME
 }
 
+remove-snap() {
+    echo -e "\n${YELLOW}${BOLD}STEP ${BLUE}=> ${WHITE}Remove all package from snap${CLEAR}"
+    sudo snap remove --purge $(snap list | awk '!/^Name|^core/ {print $1}')
+
+    echo -e "\n${YELLOW}${BOLD}STEP ${BLUE}=> ${WHITE}Remove snap${CLEAR}"
+    sudo apt -y remove --purge --autoremove snapd 
+
+    echo -e "\n${YELLOW}${BOLD}STEP ${BLUE}=> ${WHITE}Set up apt to block snap${CLEAR}"
+    echo "# To prevent repository packages from triggering the installation of snap," | sudo tee /etc/apt/preferences.d/nosnap.pref > /dev/null
+    echo "# this file forbids snapd from being installed by APT." | sudo tee -a /etc/apt/preferences.d/nosnap.pref > /dev/null
+    echo "" | sudo tee -a /etc/apt/preferences.d/nosnap.pref > /dev/null
+    echo "Package: snapd" | sudo tee -a /etc/apt/preferences.d/nosnap.pref > /dev/null
+    echo "Pin: release a=*" | sudo tee -a /etc/apt/preferences.d/nosnap.pref > /dev/null
+    echo "Pin-Priority: -10" | sudo tee -a /etc/apt/preferences.d/nosnap.pref > /dev/null
+
+    echo -e "\n${YELLOW}${BOLD}STEP ${BLUE}=> ${WHITE}Update software list${CLEAR}"
+    sudo apt update
+}
+
 clean-up() {
     echo -e "\n${YELLOW}${BOLD}STEP ${BLUE}=> ${WHITE}Clean up apt packages${CLEAR}"
     sudo apt -y --purge autoremove
@@ -61,6 +80,9 @@ install-all() {
 
     echo -e "\n${GREEN}${BOLD}SETUP ${BLUE}=> ${CYAN}Install pm2${CLEAR}"
     install-pm2
+
+    echo -e "\n${GREEN}${BOLD}SETUP ${BLUE}=> ${CYAN}Remove snap${CLEAR}"
+    remove-snap
 
     echo -e "\n${GREEN}${BOLD}POST SETUP ${BLUE}=> ${CYAN}Clean-Up${CLEAR}"
     clean-up
