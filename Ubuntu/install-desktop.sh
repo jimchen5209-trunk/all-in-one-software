@@ -95,6 +95,11 @@ install-personalize() {
     fc-cache -fv
 }
 
+install-communtiy() {
+    echo -e "\n${YELLOW}${BOLD}SOFTWARE ${BLUE}=> ${WHITE}Telegram Desktop${CLEAR}"
+    sudo snap install telegram-desktop
+}
+
 install-portainer() {
     echo -e "\n${YELLOW}${BOLD}STEP ${BLUE}=> ${WHITE}Create volume${CLEAR}"
     sudo docker volume create portainer_data
@@ -131,6 +136,9 @@ install-all() {
     echo -e "\n${GREEN}${BOLD}SETUP ${BLUE}=> ${CYAN}Install personalizations${CLEAR}"
     install-personalize
     
+    echo -e "\n${GREEN}${BOLD}SETUP ${BLUE}=> ${CYAN}Install community tools${CLEAR}"
+    install-community
+
     echo -e "\n${GREEN}${BOLD}SETUP ${BLUE}=> ${CYAN}Install portainer (docker manage tool)${CLEAR}"
     install-portainer
 
