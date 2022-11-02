@@ -90,7 +90,7 @@ install-all() {
 
 install-all
 
-echo -e "\n${BLUE}${BOLD}=> ${WHITE}Desktop Tool Install Complete!${CLEAR}\n"
+echo -e "\n${BLUE}${BOLD}=> ${WHITE}Prod Server Tool Install Complete!${CLEAR}\n"
 
 if [ "$1" != "--called-from-another" ]; then
     echo -e "\n${BLUE}${BOLD}=> ${WHITE}Install Complete! Restart your computer to continue!${CLEAR}"
