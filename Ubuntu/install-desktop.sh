@@ -30,7 +30,7 @@ install-basic-tools() {
     echo -e "\n${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Update apt source list${CLEAR}"
     sudo apt update
     echo -e "\n${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Install${CLEAR}"
-    sudo apt install anydesk
+    sudo apt -y install anydesk
 
     echo -e "\n${YELLOW}${BOLD}SOFTWARE ${BLUE}=> ${WHITE}Zerotier${CLEAR}"
     echo -e "\n${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Add repository${CLEAR}"
@@ -40,7 +40,7 @@ install-basic-tools() {
     echo -e "\n${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Update apt source list${CLEAR}"
     sudo apt update
     echo -e "\n${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Install${CLEAR}"
-    sudo apt install zerotier-one
+    sudo apt -y install zerotier-one
 
     echo -e "\n${YELLOW}${BOLD}SOFTWARE ${BLUE}=> ${WHITE}GIMP${CLEAR}"
     sudo apt -y install gimp
