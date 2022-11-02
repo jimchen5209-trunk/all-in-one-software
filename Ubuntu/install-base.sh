@@ -21,7 +21,7 @@ do-system-upgrade() {
     sudo apt -y update
 
     echo -e "\n${YELLOW}${BOLD}STEP ${BLUE}=> ${WHITE}Upgrade system softwares${CLEAR}"
-    sudo NEEDRESTART_MODE=l apt -y upgrade
+    sudo NEEDRESTART_MODE=a apt -y upgrade
 }
 
 install-basic-tools() {
