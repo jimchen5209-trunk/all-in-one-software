@@ -48,7 +48,9 @@ install-pm2() {
 
 remove-snap() {
     echo -e "\n${YELLOW}${BOLD}STEP ${BLUE}=> ${WHITE}Remove all package from snap${CLEAR}"
-    sudo snap remove --purge $(snap list | awk '!/^Name|^core/ {print $1}')
+    sudo snap remove $(snap list | awk '!/^Name|^core|^snapd/ {print $1}')
+    sudo snap remove $(snap list | awk '!/^Name|^snapd/ {print $1}')
+    sudo snap remove snapd
 
     echo -e "\n${YELLOW}${BOLD}STEP ${BLUE}=> ${WHITE}Remove snap${CLEAR}"
     sudo -E apt -y remove --purge --autoremove snapd 
