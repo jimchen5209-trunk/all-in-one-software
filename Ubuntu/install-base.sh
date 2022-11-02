@@ -21,7 +21,7 @@ do-system-upgrade() {
     sudo apt -y update
 
     echo -e "\n${YELLOW}${BOLD}STEP ${BLUE}=> ${WHITE}Upgrade system softwares${CLEAR}"
-    sudo apt -y upgrade
+    sudo DEBIAN_FRONTEND=noninteractive apt -y upgrade
 }
 
 install-basic-tools() {
