@@ -173,7 +173,7 @@ install-all() {
     install-personalize
     
     echo -e "\n${GREEN}${BOLD}SETUP ${BLUE}=> ${CYAN}Install community tools${CLEAR}"
-    install-community
+    install-communtiy
 
     echo -e "\n${GREEN}${BOLD}SETUP ${BLUE}=> ${CYAN}Install portainer (docker manage tool)${CLEAR}"
     install-portainer
