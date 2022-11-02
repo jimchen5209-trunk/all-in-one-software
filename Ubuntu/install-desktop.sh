@@ -42,7 +42,7 @@ install-basic-tools() {
     curl -SL https://go.microsoft.com/fwlink\?linkid\=2149051 --output edge.deb
     echo -e "\n${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Install${CLEAR}"
     cp edge.deb /tmp
-    sudo apt -y install /tmp/edge.deb
+    sudo -E apt -y install /tmp/edge.deb
 
     echo -e "\n${YELLOW}${BOLD}SOFTWARE ${BLUE}=> ${WHITE}AnyDesk${CLEAR}"
     echo -e "\n${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Add repository${CLEAR}"
@@ -50,9 +50,9 @@ install-basic-tools() {
     curl -fsSL https://keys.anydesk.com/repos/DEB-GPG-KEY | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/anydesk.gpg
     echo "deb [signed-by=/etc/apt/trusted.gpg.d/anydesk.gpg] http://deb.anydesk.com/ all main" | sudo tee /etc/apt/sources.list.d/anydesk-stable.list > /dev/null
     echo -e "\n${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Update apt source list${CLEAR}"
-    sudo apt update
+    sudo -E apt update
     echo -e "\n${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Install${CLEAR}"
-    sudo apt -y install anydesk
+    sudo -E apt -y install anydesk
 
     echo -e "\n${YELLOW}${BOLD}SOFTWARE ${BLUE}=> ${WHITE}Zerotier${CLEAR}"
     echo -e "\n${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Add repository${CLEAR}"
@@ -60,12 +60,12 @@ install-basic-tools() {
     curl -fsSL https://raw.githubusercontent.com/zerotier/ZeroTierOne/master/doc/contact%40zerotier.com.gpg | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/zerotier.gpg
     echo "deb [signed-by=/etc/apt/trusted.gpg.d/zerotier.gpg] https://download.zerotier.com/debian/$(lsb_release -cs) $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/zerotier.list > /dev/null
     echo -e "\n${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Update apt source list${CLEAR}"
-    sudo apt update
+    sudo -E apt update
     echo -e "\n${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Install${CLEAR}"
-    sudo apt -y install zerotier-one
+    sudo -E apt -y install zerotier-one
 
     echo -e "\n${YELLOW}${BOLD}SOFTWARE ${BLUE}=> ${WHITE}GIMP${CLEAR}"
-    sudo apt -y install gimp
+    sudo -E apt -y install gimp
 
     echo -e "\n${YELLOW}${BOLD}SOFTWARE ${BLUE}=> ${WHITE}Spotify${CLEAR}"
     sudo snap install spotify
@@ -73,28 +73,28 @@ install-basic-tools() {
 
 install-dev-tools() {
     echo -e "\n${YELLOW}${BOLD}SOFTWARE ${BLUE}=> ${WHITE}Gnome Keyring${CLEAR}"
-    sudo apt -y install gnome-keyring
+    sudo -E apt -y install gnome-keyring
 
     echo -e "\n${YELLOW}${BOLD}SOFTWARE ${BLUE}=> ${WHITE}Visual Studio Code${CLEAR}"
     echo -e "${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Download deb file${CLEAR}"
     curl -SL https://code.visualstudio.com/sha/download\?build\=stable\&os\=linux-deb-x64 --output code.deb
     echo -e "${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Install${CLEAR}"
     cp code.deb /tmp
-    sudo apt -y install /tmp/code.deb
+    sudo -E apt -y install /tmp/code.deb
 
     echo -e "\n${YELLOW}${BOLD}SOFTWARE ${BLUE}=> ${WHITE}Insomnia${CLEAR}"
     echo -e "${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Download deb file${CLEAR}"
     curl -SL https://updates.insomnia.rest/downloads/ubuntu/latest\?\&app=com.insomnia.app\&source=website --output insomnia.deb
     echo -e "${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Install${CLEAR}"
     cp insomnia.deb /tmp
-    sudo apt -y install /tmp/insomnia.deb
+    sudo -E apt -y install /tmp/insomnia.deb
 
     echo -e "\n${YELLOW}${BOLD}SOFTWARE ${BLUE}=> ${WHITE}MySQL Workbench${CLEAR}"
     echo -e "${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Download deb file${CLEAR}"
     curl -SL https://dev.mysql.com/get/Downloads/MySQLGUITools/mysql-workbench-community_8.0.31-1ubuntu22.04_amd64.deb --output mysql-workbench.deb
     echo -e "${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Install${CLEAR}"
     cp mysql-workbench.deb /tmp
-    sudo apt -y install /tmp/mysql-workbench.deb
+    sudo -E apt -y install /tmp/mysql-workbench.deb
 
     echo -e "\n${YELLOW}${BOLD}SOFTWARE ${BLUE}=> ${WHITE}MQTTX${CLEAR}"
     sudo snap install mqttx
@@ -132,7 +132,7 @@ install-communtiy() {
     curl -SL https://discord.com/api/download/canary\?platform\=linux\&format=deb --output discore-canary.deb
     echo -e "${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Install${CLEAR}"
     cp discore-canary.deb /tmp
-    sudo apt -y install /tmp/discore-canary.deb
+    sudo -E apt -y install /tmp/discore-canary.deb
 }
 
 install-portainer() {
@@ -153,9 +153,9 @@ clean-up() {
     rm ./*.zip
 
     echo -e "\n${YELLOW}${BOLD}STEP ${BLUE}=> ${WHITE}Clean up apt packages${CLEAR}"
-    sudo apt -y --purge autoremove
-    sudo apt clean
-    sudo apt autoclean
+    sudo -E apt -y --purge autoremove
+    sudo -E apt clean
+    sudo -E apt autoclean
 
     echo -e "\n${YELLOW}${BOLD}STEP ${BLUE}=> ${WHITE}Clean up snap caches${CLEAR}"
     sudo sh -c 'rm -rf /var/lib/snapd/cache/*'

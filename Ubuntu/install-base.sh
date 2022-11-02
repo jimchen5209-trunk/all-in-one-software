@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+export NEEDRESTART_MODE=a
 
 # Text Color Variables
 GREEN='\033[32m'  # Green
@@ -18,30 +19,30 @@ sudo -v
 
 do-system-upgrade() {
     echo -e "\n${YELLOW}${BOLD}STEP ${BLUE}=> ${WHITE}Update software list${CLEAR}"
-    sudo apt -y update
+    sudo -E apt -y update
 
     echo -e "\n${YELLOW}${BOLD}STEP ${BLUE}=> ${WHITE}Upgrade system softwares${CLEAR}"
-    sudo NEEDRESTART_MODE=a apt -y upgrade
+    sudo -E apt -y upgrade
 }
 
 install-basic-tools() {
     echo -e "\n${YELLOW}${BOLD}SOFTWARE ${BLUE}=> ${WHITE}Git & GPG${CLEAR}"
-    sudo apt -y install git gpg
+    sudo -E apt -y install git gpg
 
     echo -e "\n${YELLOW}${BOLD}SOFTWARE ${BLUE}=> ${WHITE}Curl & Wget${CLEAR}"
-    sudo apt -y install curl wget
+    sudo -E apt -y install curl wget
     
     echo -e "\n${YELLOW}${BOLD}SOFTWARE ${BLUE}=> ${WHITE}Vim${CLEAR}"
-    sudo apt -y install vim
+    sudo -E apt -y install vim
 
     echo -e "\n${YELLOW}${BOLD}SOFTWARE ${BLUE}=> ${WHITE}Htop${CLEAR}"
-    sudo apt -y install htop
+    sudo -E apt -y install htop
 
     echo -e "\n${YELLOW}${BOLD}SOFTWARE ${BLUE}=> ${WHITE}Z-Shell${CLEAR}"
-    sudo apt -y install zsh
+    sudo -E apt -y install zsh
 
     echo -e "\n${YELLOW}${BOLD}SOFTWARE ${BLUE}=> ${WHITE}Neofetch${CLEAR}"
-    sudo apt -y install neofetch
+    sudo -E apt -y install neofetch
 }
 
 setup-basic-config() {
@@ -150,7 +151,7 @@ install-node() {
 
 install-docker() {
     echo -e "\n${YELLOW}${BOLD}STEP ${BLUE}=> ${WHITE}Install dependcies${CLEAR}"
-    sudo apt -y install ca-certificates curl gnupg lsb-release
+    sudo -E apt -y install ca-certificates curl gnupg lsb-release
 
     echo -e "\n${YELLOW}${BOLD}STEP ${BLUE}=> ${WHITE}Add repository${CLEAR}"
     sudo mkdir -p /etc/apt/trusted.gpg.d
@@ -158,10 +159,10 @@ install-docker() {
     echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/trusted.gpg.d/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
     echo -e "\n${YELLOW}${BOLD}STEP ${BLUE}=> ${WHITE}Update apt source list${CLEAR}"
-    sudo apt update
+    sudo -E apt update
 
     echo -e "\n${YELLOW}${BOLD}STEP ${BLUE}=> ${WHITE}Install docker${CLEAR}"
-    sudo apt -y install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+    sudo -E apt -y install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 
     echo -e "\n${YELLOW}${BOLD}STEP ${BLUE}=> ${WHITE}Enable docker permission${CLEAR}"
     sudo gpasswd -a $(whoami) docker
@@ -169,17 +170,17 @@ install-docker() {
 
 install-python() {
     echo -e "\n${YELLOW}${BOLD}STEP ${BLUE}=> ${WHITE}Install pip for python3${CLEAR}"
-    sudo apt -y install python3-pip
+    sudo -E apt -y install python3-pip
 
     echo -e "\n${YELLOW}${BOLD}STEP ${BLUE}=> ${WHITE}Install venv for python3${CLEAR}"
-    sudo apt -y install python3-venv
+    sudo -E apt -y install python3-venv
 }
 
 clean-up() {
     echo -e "\n${YELLOW}${BOLD}STEP ${BLUE}=> ${WHITE}Clean up apt packages${CLEAR}"
-    sudo apt -y --purge autoremove
-    sudo apt clean
-    sudo apt autoclean
+    sudo -E apt -y --purge autoremove
+    sudo -E apt clean
+    sudo -E apt autoclean
 }
 
 install-all() {

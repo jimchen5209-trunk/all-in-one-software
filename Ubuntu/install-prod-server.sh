@@ -16,7 +16,7 @@ echo -e "${BLUE}${BOLD}=> ${WHITE}Install Prod Server Tool${CLEAR}"
 
 install-basic-tools() {
     echo -e "\n${YELLOW}${BOLD}SOFTWARE ${BLUE}=> ${WHITE}Tmux${CLEAR}"
-    sudo apt -y install tmux
+    sudo -E apt -y install tmux
 
     echo -e "\n${YELLOW}${BOLD}SOFTWARE ${BLUE}=> ${WHITE}Zerotier${CLEAR}"
     echo -e "\n${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Add repository${CLEAR}"
@@ -24,9 +24,9 @@ install-basic-tools() {
     curl -fsSL https://raw.githubusercontent.com/zerotier/ZeroTierOne/master/doc/contact%40zerotier.com.gpg | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/zerotier.gpg
     echo "deb [signed-by=/etc/apt/trusted.gpg.d/zerotier.gpg] https://download.zerotier.com/debian/$(lsb_release -cs) $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/zerotier.list > /dev/null
     echo -e "\n${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Update apt source list${CLEAR}"
-    sudo apt update
+    sudo -E apt update
     echo -e "\n${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Install${CLEAR}"
-    sudo apt -y install zerotier-one
+    sudo -E apt -y install zerotier-one
 }
 
 install-portainer() {
@@ -50,7 +50,7 @@ remove-snap() {
     sudo snap remove --purge $(snap list | awk '!/^Name|^core/ {print $1}')
 
     echo -e "\n${YELLOW}${BOLD}STEP ${BLUE}=> ${WHITE}Remove snap${CLEAR}"
-    sudo apt -y remove --purge --autoremove snapd 
+    sudo -E apt -y remove --purge --autoremove snapd 
 
     echo -e "\n${YELLOW}${BOLD}STEP ${BLUE}=> ${WHITE}Set up apt to block snap${CLEAR}"
     echo "# To prevent repository packages from triggering the installation of snap," | sudo tee /etc/apt/preferences.d/nosnap.pref > /dev/null
@@ -61,14 +61,14 @@ remove-snap() {
     echo "Pin-Priority: -10" | sudo tee -a /etc/apt/preferences.d/nosnap.pref > /dev/null
 
     echo -e "\n${YELLOW}${BOLD}STEP ${BLUE}=> ${WHITE}Update software list${CLEAR}"
-    sudo apt update
+    sudo -E apt update
 }
 
 clean-up() {
     echo -e "\n${YELLOW}${BOLD}STEP ${BLUE}=> ${WHITE}Clean up apt packages${CLEAR}"
-    sudo apt -y --purge autoremove
-    sudo apt clean
-    sudo apt autoclean
+    sudo -E apt -y --purge autoremove
+    sudo -E apt clean
+    sudo -E apt autoclean
 }
 
 install-all() {
