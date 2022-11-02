@@ -26,7 +26,7 @@ install-icons() {
     echo -e "\n${YELLOW}${BOLD}STEP ${BLUE}=> ${WHITE}Replace vscode icon${CLEAR}"
     mkdir -p ~/.local/share/applications/
     cp /usr/share/applications/code.desktop ~/.local/share/applications/
-    sed -i "s/com.visualstudio.code/\/home\/$(whoami)\/.app\/icons\/com.visualstudio.code.png/g" ~/.local/share/applications/
+    sed -i "s/com.visualstudio.code/\/home\/$(whoami)\/.app\/icons\/com.visualstudio.code.png/g" ~/.local/share/applications/code.desktop
 }
 
 install-all() {
