@@ -16,7 +16,7 @@ echo -e "${BLUE}${BOLD}=> ${WHITE}Extra config for Multi System${CLEAR}"
 install-grub-customize() {
     echo -e "\n${YELLOW}${BOLD}STEP ${BLUE}=> ${WHITE}Install grub customizer${CLEAR}"
     echo -e "${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Add PPA${CLEAR}"
-    sudo add-apt-repository ppa:danielrichter2007/grub-customizer
+    sudo add-apt-repository -y ppa:danielrichter2007/grub-customizer
     echo -e "${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Install${CLEAR}"
     sudo -E apt install grub-customizer
 
