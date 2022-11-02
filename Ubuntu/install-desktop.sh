@@ -41,6 +41,9 @@ install-basic-tools() {
     sudo apt update
     echo -e "\n${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Install${CLEAR}"
     sudo apt install zerotier-one
+
+    echo -e "\n${YELLOW}${BOLD}SOFTWARE ${BLUE}=> ${WHITE}GIMP${CLEAR}"
+    sudo apt -y install gimp
 }
 
 install-dev-tools() {
