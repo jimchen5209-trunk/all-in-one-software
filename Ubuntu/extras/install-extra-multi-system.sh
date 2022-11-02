@@ -12,3 +12,23 @@ CLEAR='\033[0m'   # Clear color and formatting
 # Startup
 echo -e "${BLUE}${BOLD}=> ${WHITE}Extra config for Multi System${CLEAR}"
 
+install-grub-customize() {
+    echo -e "\n${YELLOW}${BOLD}STEP ${BLUE}=> ${WHITE}Install grub customizer${CLEAR}"
+    echo -e "${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Add PPA${CLEAR}"
+    sudo add-apt-repository ppa:danielrichter2007/grub-customizer
+    echo -e "${CYAN}${BOLD}STEP ${BLUE}=> ${WHITE}Install${CLEAR}"
+    sudo apt install grub-customizer
+
+    echo -e "\n${YELLOW}${BOLD}STEP ${BLUE}=> ${WHITE}Install grub theme${CLEAR}"
+    git clone https://github.com/vinceliuice/grub2-themes.git ~/grub2-themes
+    sudo ~/grub2-themes/install.sh -t vimix
+}
+
+install-all() {
+    echo -e "\n${GREEN}${BOLD}SETUP ${BLUE}=> ${CYAN}Grub cutomization${CLEAR}"
+    install-grub-customize
+}
+
+install-all
+
+echo -e "\n${BLUE}${BOLD}=> ${WHITE}Extra config for Multi System Install Complete!${CLEAR}\n"
