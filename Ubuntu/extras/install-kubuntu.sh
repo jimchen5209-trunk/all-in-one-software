@@ -14,8 +14,20 @@ CLEAR='\033[0m'   # Clear color and formatting
 echo -e "${BLUE}${BOLD}=> ${WHITE}Extra config for Kubuntu${CLEAR}"
 
 fix-zsh() {
-    echo -e "\n${YELLOW}${BOLD}STEP ${BLUE}=> ${WHITE}Add Profile to ZProfile${CLEAR}"
+    echo -e "\n${YELLOW}${BOLD}STEP ${BLUE}=> ${WHITE}Add Profile to Global ZProfile${CLEAR}"
     echo "emulate sh -c 'source /etc/profile'" | sudo tee -a /etc/zsh/zprofile > /dev/null
+
+    echo -e "\n${YELLOW}${BOLD}STEP ${BLUE}=> ${WHITE}Add PATH to ZProfile${CLEAR}"
+    echo "# set PATH so it includes user's private bin if it exists" >> ~/.zprofile
+    echo "if [ -d \"\$HOME/bin\" ] ; then" >> ~/.zprofile
+    echo "    PATH=\"\$HOME/bin:\$PATH\"" >> ~/.zprofile
+    echo "fi" >> ~/.zprofile
+    echo "" >> ~/.zprofile
+    echo "# set PATH so it includes user's private bin if it exists" >> ~/.zprofile
+    echo "if [ -d \"\$HOME/.local/bin\" ] ; then" >> ~/.zprofile
+    echo "    PATH=\"\$HOME/.local/bin:\$PATH\"" >> ~/.zprofile
+    echo "fi" >> ~/.zprofile
+    echo "" >> ~/.zprofile
 }
 
 install-icons() {
