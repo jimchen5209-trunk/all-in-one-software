@@ -9,6 +9,28 @@ WHITE='\033[37m' # WHITE
 BOLD='\033[1m' # BOLD
 CLEAR='\033[0m'   # Clear color and formatting
 
+# Provide options for extra scripts.
+# Credit: https://serverfault.com/questions/144939/multi-select-menu-in-bash-script
+options=($(ls extras))
+
+menu() {
+    echo -e "${BLUE}${BOLD}==${WHITE}Select extra script to run after base installation${BLUE}==${CLEAR}\n"
+    echo -e "${WHITE}Avaliable scripts:"
+    for i in ${!options[@]}; do 
+        printf "${YELLOW}%3d${GREEN}%s${WHITE}) ${CLEAR}%s\n" $((i+1)) "${choices[i]:- }" "${options[i]}"
+    done
+    if [[ "$msg" ]]; then echo -e "\n${YELLOW}$msg${CLEAR}"; else echo -e ""; fi
+}
+
+prompt="Check an option (again to uncheck, ENTER when done): "
+while menu && read -rp "$prompt" num && [[ "$num" ]]; do
+    [[ "$num" != *[![:digit:]]* ]] &&
+    (( num > 0 && num <= ${#options[@]} )) ||
+    { msg="Invalid option: $num"; continue; }
+    ((num--)); msg="${options[num]} was ${choices[num]:+un}checked"
+    [[ "${choices[num]}" ]] && choices[num]="" || choices[num]="+"
+done
+
 # Install base first
 sh -c "./install-base.sh --called-from-another"
 # Startup
@@ -160,8 +182,11 @@ install-all() {
 }
 
 install-all
-if [ "$1" != "--called-from-another" ]; then
-    echo -e "\n${BLUE}${BOLD}=> ${WHITE}Install Complete! Restart your computer to continue!${CLEAR}"
-else 
-    echo -e "\n${BLUE}${BOLD}=> ${WHITE}Desktop Tool Install Complete!${CLEAR}\n"
-fi
+
+echo -e "\n${BLUE}${BOLD}=> ${WHITE}Desktop Tool Install Complete!${CLEAR}\n"
+
+for i in ${!options[@]}; do 
+    [[ "${choices[i]}" ]] && sh -c "./extras/${options[i]}"
+done
+
+echo -e "\n${BLUE}${BOLD}=> ${WHITE}Install Complete! Restart your computer to continue!${CLEAR}"
