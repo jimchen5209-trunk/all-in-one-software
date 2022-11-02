@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+export NEEDRESTART_MODE=a
 
 # Text Color Variables
 GREEN='\033[32m'  # Green
