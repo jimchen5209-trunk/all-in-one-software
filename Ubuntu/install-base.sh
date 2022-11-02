@@ -21,7 +21,7 @@ do-system-upgrade() {
     sudo apt -y update
 
     echo -e "\n${YELLOW}${BOLD}STEP ${BLUE}=> ${WHITE}Upgrade system softwares${CLEAR}"
-    sudo DEBIAN_FRONTEND=noninteractive apt -y upgrade
+    sudo NEEDRESTART_MODE=l apt -y upgrade
 }
 
 install-basic-tools() {
