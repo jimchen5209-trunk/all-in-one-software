@@ -176,6 +176,29 @@ install-python() {
     sudo -E apt -y install python3-venv
 }
 
+install-php() {
+    echo -e "\n${YELLOW}${BOLD}STEP ${BLUE}=> ${WHITE}Install php-cli and all requirements for laravel${CLEAR}"
+    sudo -E apt -y install php-cli openssl php-common php-curl php-json php-mbstring php-mysql php-xml php-zip
+
+    echo -e "\n${YELLOW}${BOLD}STEP ${BLUE}=> ${WHITE}Install composer${CLEAR}"
+    EXPECTED_CHECKSUM="$(php -r 'copy("https://composer.github.io/installer.sig", "php://stdout");')"
+    php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+    ACTUAL_CHECKSUM="$(php -r "echo hash_file('sha384', 'composer-setup.php');")"
+
+    if [ "$EXPECTED_CHECKSUM" != "$ACTUAL_CHECKSUM" ]
+    then
+        echo -e "${CYAN}${BOLD}CHECK ${BLUE}=> ${YELLOW}Installer checksum failed! Composer installation skipped!${CLEAR}"
+    else
+        php composer-setup.php
+    fi
+
+    rm composer-setup.php
+    sudo mv composer.phar /usr/local/bin/composer
+
+    echo -e "\n${YELLOW}${BOLD}STEP ${BLUE}=> ${WHITE}Install default composer and laravel plugin for oh-my-zsh${CLEAR}"
+    sed -i '' 's/plugins=(git/plugins=(git composer laravel laravel5/' ~/.zshrc
+}
+
 clean-up() {
     echo -e "\n${YELLOW}${BOLD}STEP ${BLUE}=> ${WHITE}Clean up apt packages${CLEAR}"
     sudo -E apt -y --purge autoremove
@@ -204,6 +227,9 @@ install-all() {
 
     echo -e "\n${GREEN}${BOLD}SETUP ${BLUE}=> ${CYAN}Install Python${CLEAR}"
     install-python
+
+    echo -e "\n${GREEN}${BOLD}SETUP ${BLUE}=> ${CYAN}Install php${CLEAR}"
+    install-php
 
     echo -e "\n${GREEN}${BOLD}POST SETUP ${BLUE}=> ${CYAN}Clean-Up${CLEAR}"
     clean-up
